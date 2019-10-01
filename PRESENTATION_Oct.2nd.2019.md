@@ -208,6 +208,9 @@ First launch the Scala shell:
 
 and then go ahead and start using scala> 
 
+-------------------------------------------------
+-> # explore data in the spark shell scala REPL 2  <-
+
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
 
@@ -242,6 +245,11 @@ for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %
 stackStates.push("NY")
 stackStates.push("NY")
 stackStates.push("NY")
+
+//re-create and confirm display frequency distribution
+var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
+for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
+
 
 ```
 
