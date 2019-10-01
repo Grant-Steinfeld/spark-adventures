@@ -240,24 +240,18 @@ object Hello {
 ```
 
 -------------------------------------------------
--> # spark shell explorations <-
-code samples
+-> # spark shell explorations   <-
 
-*bin/spark-shell*
+bin/spark-shell
 
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
 
 //prep for SQL queries
-
 weather.createOrReplaceTempView("vWeatherLDM")
 
 //Grab just subjects with Tstem in subject
-
 val thunder = spark.sql("SELECT subject FROM vWeatherLDM WHERE subject LIKE '%Tstm%'")
-
-// load up states
-val states = spark.read.option("header",true).csv("file:///home/developer/datasets/state-abbr.csv")
 val r = thunder.limit(60).collect()
 var firstValue = r(0)
 var a = firstValue.mkString
@@ -265,31 +259,33 @@ var rowString = a.substring(a.indexOf("Tstm")+4).toUpperCase
 import scala.collection.mutable.Stack
 
 var ll = rowString.split(' ')
-//ll: Array[String] = Array("", CT, MA, ME, NH, RI, CW, 191820Z, -, 200000Z)
-
-for (p <- ll if p.length() == 2) println(p)
 for (p <- ll if p.length() == 2) stackStates.push(p)
-
-
 stackStates.groupBy(identity).mapValues(_.size)
-res51: scala.collection.immutable.Map[String,Int] = Map(MA -> 1, In -> 1, ME -> 1, CW -> 1, CT -> 1, Ww -> 1, NH -> 1, CA -> 4, RI -> 1)
 var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
-
-scala> for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
-In State: MA, Thunderstorms: 1 occured
-In State: In, Thunderstorms: 1 occured
-In State: ME, Thunderstorms: 1 occured
-In State: CW, Thunderstorms: 1 occured
-In State: CT, Thunderstorms: 1 occured
-In State: Ww, Thunderstorms: 1 occured
-In State: NH, Thunderstorms: 1 occured
-In State: CA, Thunderstorms: 4 occured
-In State: RI, Thunderstorms: 1 occured
-
+for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
 
 ```
+
+
+-------------------------------------------------
+-> # Thunderstorms by state <-
+
+
+
+> In State: MA, Thunderstorms: 1 occured
+> In State: In, Thunderstorms: 1 occured
+> In State: ME, Thunderstorms: 1 occured
+> In State: CW, Thunderstorms: 1 occured
+> In State: CT, Thunderstorms: 1 occured
+> In State: Ww, Thunderstorms: 1 occured
+> In State: NH, Thunderstorms: 1 occured
+> In State: CA, Thunderstorms: 4 occured
+> In State: RI, Thunderstorms: 1 occured
 
 -------------------------------------------------
 -> # The End <-
 
 -------------------------------------------------
+-> # misc. <-
+val states = spark.read.option("header",true).csv("file:///home/developer/datasets/state-abbr.csv")
+
