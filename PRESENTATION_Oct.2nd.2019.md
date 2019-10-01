@@ -8,9 +8,18 @@
 
 -> Apache Foundation Open Source Analytics Cluster-computing  framework <-
 
+
+
 -------------------------------------------------
 
 -> # Overview <-
+```
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.4
+      /_/
+```
 
 Apache Spark is a *fast* general purpose _cluster_ *compute* system
 that processes *large data sets* in parallel.
@@ -83,20 +92,11 @@ Checkpoints, so if job fails it can pick up where it left off
 * Version 2.x
 - Structured Streaming API
 
--------------------------------------------------
--> # Build ambitious applications quickly <-
 
-_Pathway_ 
-First use the `bin/spark-cli`  to interactively explore and analyze huge datasets.
-Significant improvement over  batch Hive jobs running on Hadoop.
-
-A developer can train a ML model can put the model through multiple steps in the training process
-without checkpointing to disk.
-
-    -> then port key algorithms to actual code to deplpy and run in a spark cluster
 
 -------------------------------------------------
--> # How? <-
+-> # Productivity? <-
+
 *  Achieved by a few High Level Query APIs
 - SparkSQL 
 -- SQL syntax queries
@@ -130,7 +130,7 @@ allows for a substantially more *efficient distributed execution* while also exp
   - read.textFile ( JSON, text, csv )
   - `slow`
   - Dataset
- - consume _streaming_ data in motion
+ - consume _streaming_ data in *motion*
   - Structured Streaming
   - `higher velocity`
   - RDD 
@@ -146,10 +146,10 @@ allows for a substantially more *efficient distributed execution* while also exp
         - * Independent set of processes *
         - * Spark Context *
     - Cluster Managers
-        - * Standalone *
-        - * Mesos - Hadoop MapReduce *
-        - * YARN - resource manager *
-        - * K8s - experimental *
+        - * Standalone* (default)
+        - Mesos - Hadoop MapReduce 
+        - YARN - resource manager 
+        
 
 -------------------------------------------------
 -> # Applications <-
@@ -177,63 +177,34 @@ allows for a substantially more *efficient distributed execution* while also exp
 - REST API 
 -- Port 4040 (default)
 
+
 -------------------------------------------------
+-> # Dev process  <-
 
--> # DEMO: Running and deploying a Scala application <-
+Build ambitious applications quickly!
 
+First use the REPL/CLI that suits your programming language
 
+Scala users:  `spark-2.4.4/bin/spark-shell`  
+Python users: `spark-2.4.4/bin/pyspark` 
 
-```
-/*
-    first compile with mvn
-*/
-mvn package
+Now you can interactively explore and analyze huge datasets.
 
-/*
-    produces a jar file
-*/
-/home/developer/dev/scala-hw/target/scala-2.12/hello-spark_2.12-0.1.0-SNAPSHOT.jar
+Significant improvement over  batch Hive jobs running on Hadoop.
 
-/*
-    deploy and run jar in the scala unified engine
-*/
-/opt/spark-2.4.4/bin/spark-submit 
-    --class example.Hello 
-    --master local[*] 
-    /home/developer/dev/scala-hw/target/scala-2.12/hello-spark_2.12-0.1.0-SNAPSHOT.jar
-```
+A developer can train a ML model can put the model through multiple steps in the training process
+without checkpointing to disk.
 
-Simplify: use a *config file* in cases where there are multiple Dependencies/Jars
-
+-> then port key algorithms by `writing actual code` to *deploy and run* in a spark cluster
 
 
 -------------------------------------------------
--> # Scala read csv file <-
-```
-package example
+-> # explore data in the spark shell scala REPL   <-
 
-import org.apache.spark.sql.SparkSession
-import org.apache.log4j.{Logger,Level}
+First launch the Scala shell:
+`bin/spark-shell`
 
-
-object Hello {
-        def main(args: Array[String]) {
-         Logger.getLogger("org").setLevel(Level.OFF)
-         println("hello spark")
-         val spark = SparkSession.builder().getOrCreate()
-         val medals = spark.read.option("header",true).csv("file:///home/developer/datasets/most-medals-won.csv")
-         println(medals)
-         medals.printSchema()
-         spark.stop()
-        }
-}
-
-```
-
--------------------------------------------------
--> # spark shell explorations   <-
-
-bin/spark-shell
+and then go ahead and start using scala> 
 
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
@@ -272,6 +243,61 @@ for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %
 > In State: NH, Thunderstorms: 1 occured
 > In State: CA, Thunderstorms: 4 occured
 > In State: RI, Thunderstorms: 1 occured
+
+-------------------------------------------------
+-> # DEMO Scala read csv file <-
+```
+package example
+
+import org.apache.spark.sql.SparkSession
+import org.apache.log4j.{Logger,Level}
+
+
+object Hello {
+        def main(args: Array[String]) {
+         Logger.getLogger("org").setLevel(Level.OFF)
+         println("hello spark")
+         val spark = SparkSession.builder().getOrCreate()
+         val medals = spark.read.option("header",true).csv("file:///home/developer/datasets/most-medals-won.csv")
+         println(medals)
+         medals.printSchema()
+         spark.stop()
+        }
+}
+
+```
+
+
+-------------------------------------------------
+-> # DEMO: Running and deploying a Scala application <-
+
+
+
+```
+/*
+    first compile with mvn
+*/
+mvn package
+
+/*
+    produces a jar file
+*/
+/home/developer/dev/scala-hw/target/scala-2.12/hello-spark_2.12-0.1.0-SNAPSHOT.jar
+
+/*
+    deploy and run jar in the scala unified engine
+*/
+/opt/spark-2.4.4/bin/spark-submit 
+    --class example.Hello 
+    --master local[*] 
+    /home/developer/dev/scala-hw/target/scala-2.12/hello-spark_2.12-0.1.0-SNAPSHOT.jar
+```
+
+Simplify: use a *config file* in cases where there are multiple Dependencies/Jars
+
+
+
+
 
 -------------------------------------------------
 -> # The End <-
