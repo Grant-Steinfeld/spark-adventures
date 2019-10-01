@@ -208,8 +208,26 @@ First launch the Scala shell:
 
 and then go ahead and start using scala> 
 
+
 -------------------------------------------------
--> # explore data in the spark shell scala REPL 2  <-
+-> # DEMO Weather data from breaking news alerts - raw data <-
+
+Source - methodology
+Email alerts sent to POSTFIX - written to neo4j Graph DB - Flask Python rest call
+
+ http://agentidea.com/api/news/src/weather
+
+2124 news events to date
+e.g.
+ 
+    [{"date": "Tue Aug 20 11:16:48 2019", "src": "weather", "from": "ldm@weather.cod.edu", "day_of_year": 232, "subject": "PRELIM: Ww 602 Severe Tstm Ia Il Mo 201115z - 202000z"}, ...]
+
+
+
+ Save as JSON file
+
+-------------------------------------------------
+-> # DEMO Weather data from breaking news alerts - explore <-
 
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
@@ -220,14 +238,19 @@ weather.createOrReplaceTempView("vWeatherLDM")
 //Create new dataset with subjects that have the word Tstem (Thunderstorm) 
 val thunder = spark.sql("SELECT subject FROM vWeatherLDM WHERE subject LIKE '%Tstm%'")
 
-//Convert to Arra
+//Convert to Array
 val r = thunder.limit(60).collect()
 
 //inspect first row
 var firstValue = r(0)
 var a = firstValue.mkString
 var rowString = a.substring(a.indexOf("Tstm")+4).toUpperCase
+```
 
+-------------------------------------------------
+-> # DEMO Weather data from breaking news alerts - explore 2 <-
+
+```
 //create stack to collect states
 import scala.collection.mutable.Stack
 var stackStates = Stack[String]()
@@ -240,6 +263,9 @@ for (p <- ll if p.length() == 2) stackStates.push(p)
 //create and display frequency distribution
 var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
 for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
+
+-------------------------------------------------
+-> # Demo Weather data from breaking news alerts - confirm logic <-
 
 //add some extra state data to test count groupBy
 stackStates.push("NY")
