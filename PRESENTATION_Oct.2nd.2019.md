@@ -13,6 +13,8 @@
 -------------------------------------------------
 
 -> # Overview <-
+
+
 ```
       ____              __
      / __/__  ___ _____/ /__
@@ -25,7 +27,7 @@ Apache Spark is a *fast* general purpose _cluster_ *compute* system
 that processes *large data sets* in parallel.
 
 The core abstraction is the resilient distributed dataset (RDD) a working set of data
-that resides in RAM for *fast iterative processing*
+that resides in memory allowing for *fast iterative processing*
 
 
 
@@ -297,47 +299,43 @@ Simplify: use a *config file* in cases where there are multiple Dependencies/Jar
 
 
 
+-------------------------------------------------
+-> # Resources <-
+
+spark sql tutorial
+https://www.edureka.co/blog/spark-sql-tutorial/
+
+scala for list comprehensions
+https://alvinalexander.com/scala/iterating-scala-lists-foreach-for-comprehension
+
+Pregel optimization algorithm
+https://spark.apache.org/docs/1.6.0/api/java/org/apache/spark/graphx/Pregel.html
 
 
 -------------------------------------------------
 -> # The End <-
 
 
-
-
-
 -------------------------------------------------
--> # installation options <-
+-> # installing Apache Spark <-
 
-ubuntu
-mac
+_platforms_
+    ubuntu
+    mac
+    linux
 
-linux
- this demo is built on CentOS 7 from soruce using mvn 
+_prerequisites_
 
-src using Maven and Java 1.8 or later.
+java 8 / openJDK
+https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
 
+this demo is built on CentOS 7 from soruce using mvn 
 
-spark 2.4.4 (stable latest)
+download spark 2.4.4 (stable latest)
 https://www-us.apache.org/dist/spark/spark-2.4.4/spark-2.4.4.tgz
 
 
 
--------------------------------------------------
--> # prerequisites <-
-
-java 8 openJDK
-https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
 
 
-
--------------------------------------------------
--> # spark sql tutorial <-
-https://www.edureka.co/blog/spark-sql-tutorial/
-
-https://alvinalexander.com/scala/iterating-scala-lists-foreach-for-comprehension
-
--------------------------------------------------
--> # misc. <-
-val states = spark.read.option("header",true).csv("file:///home/developer/datasets/state-abbr.csv")
 
