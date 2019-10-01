@@ -214,19 +214,34 @@ val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
 //prep for SQL queries
 weather.createOrReplaceTempView("vWeatherLDM")
 
-//Grab just subjects with Tstem in subject
+//Create new dataset with subjects that have the word Tstem (Thunderstorm) 
 val thunder = spark.sql("SELECT subject FROM vWeatherLDM WHERE subject LIKE '%Tstm%'")
+
+//Convert to Arra
 val r = thunder.limit(60).collect()
+
+//inspect first row
 var firstValue = r(0)
 var a = firstValue.mkString
 var rowString = a.substring(a.indexOf("Tstm")+4).toUpperCase
-import scala.collection.mutable.Stack
 
+//create stack to collect states
+import scala.collection.mutable.Stack
+var stackStates = Stack[String]()
+
+//parse out States where thunderstorms occured
 var ll = rowString.split(' ')
+//for comprehension
 for (p <- ll if p.length() == 2) stackStates.push(p)
-stackStates.groupBy(identity).mapValues(_.size)
+
+//create and display frequency distribution
 var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
 for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
+
+//add some extra state data to test count groupBy
+stackStates.push("NY")
+stackStates.push("NY")
+stackStates.push("NY")
 
 ```
 
@@ -236,15 +251,29 @@ for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %
 
 
 
-> In State: MA, Thunderstorms: 1 occured
-> In State: In, Thunderstorms: 1 occured
-> In State: ME, Thunderstorms: 1 occured
-> In State: CW, Thunderstorms: 1 occured
-> In State: CT, Thunderstorms: 1 occured
-> In State: Ww, Thunderstorms: 1 occured
-> In State: NH, Thunderstorms: 1 occured
-> In State: CA, Thunderstorms: 4 occured
-> In State: RI, Thunderstorms: 1 occured
+> In  State: MA, Thunderstorms: 1 occured
+> In  State: ME, Thunderstorms: 1 occured
+> In  State: CW, Thunderstorms: 1 occured
+> In  State: CT, Thunderstorms: 1 occured
+> In  State: NH, Thunderstorms: 1 occured
+> In  State: NY, Thunderstorms: 7 occured
+> In  State: RI, Thunderstorms: 1 occured
+
+So after eploring the nature and shape of the data about,
+it is now possible to write programs:
+
+a) To create and save the newly curated dataset to disk to use later on.
+
+b) To run periodically on unstructured data to perform a)
+
+c) Deploy to and take advantage of *big datasets*  to take full advantage of _Spark clustering_
+
+
+-------------------------------------------------
+-> # DEMO Scala thunderstorm.scala <-
+
+ tbd
+
 
 -------------------------------------------------
 -> # DEMO Scala read csv file <-
