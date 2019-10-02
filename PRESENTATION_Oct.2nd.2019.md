@@ -1,18 +1,17 @@
-%title: Apache Spark 2.4.4
-%author: Grant Steinfeld
-%date: 2018-10-02
-
--> Apache Spark 2.4.4 <-
-=========
 
 
--> Apache Foundation Open Source Analytics Cluster-computing  framework <-
+# Apache Spark 2.4.4 
 
 
+
+## Apache Foundation Open Source Analytics Cluster-computing  framework 
+
+### Presenters: Grant Steinfeld and Pratik Patel
+2018-10-02
 
 -------------------------------------------------
 
--> # Overview <-
+## Overview 
 
 
 ```
@@ -32,9 +31,9 @@ that resides in memory allowing for *fast iterative processing*
 
 
 -------------------------------------------------
--> # Goals <-
+## Goals 
 
-2009 out UC Berkely created by `Matei Zaharia` -> Databricks
+2009 out UC Berkely created by `Matei Zaharia` # Databricks
 who was frustrated with the slow disk intensive MapReduce 
 options like Hadoop.
 
@@ -46,7 +45,7 @@ options like Hadoop.
 
 
 -------------------------------------------------
--> # What makes it so fast? <-
+## What makes it so fast? 
 
 Sub-second latency
 
@@ -60,7 +59,7 @@ Distributed Nodes/Parallel execution
 
 
 -------------------------------------------------
--> # Core Abstraction - Resilient Distributed Datasets (RDD) <-
+## Core Abstraction - Resilient Distributed Datasets (RDD) 
 
 
 * RDD
@@ -77,48 +76,48 @@ Distributed Nodes/Parallel execution
 
 -------------------------------------------------
 
--> # Spark Core <-
+## Spark Core 
 
 * Core
-- Scala
-- Dist task dispatching
--- Scheduling
-- i/o functionality
--- Java; Python; Scala; R
+ * Scala
+ * Dist task dispatching
+  * Scheduling
+ * i/o functionality
+  * Java; Python; Scala; R
 
-- Shared variables
--- Broadcast Vars
--- Accumulators
+ *Shared variables
+  * Broadcast Vars
+  * Accumulators
 
 
 -------------------------------------------------
--> # Spark Productivity <-
+## Spark Productivity 
 
 * Ecosystem
- - Spark Streaming API - RDD / Dataset
- - SparkSQL - Dataframes (~pandas)
-  -- optimizations, abstractions
-  -- SQL syntax or functional flow
- - GraphX
- - MLlib
-  -- Machine Learning
-  -- Dist ML fwk / 9x faster hadoop
- - Structured Streaming API  
+ * Spark Streaming API - RDD / Dataset
+  * SparkSQL - Dataframes (~pandas)
+   * optimizations, abstractions
+   * SQL syntax or functional flow
+ * GraphX
+ * MLlib
+  * Machine Learning
+  * Dist ML fwk / 9x faster hadoop
+ * Structured Streaming API  
 
 
 
 
 -------------------------------------------------
--> # GraphX <-
+## GraphX 
 
 * Unifies
- - ETL
- - exploratory analysis
- - iterative graph computation
- - data view
-  -- graph && collection
-  -- transform and join graphs (vertices and edges)497.26 with RDD
-- write custom iterative graph algos with PregelAPI
+ * ETL
+ * exploratory analysis
+ * iterative graph computation
+ * data view
+  * graph && collection
+  * transform and join graphs (vertices and edges)497.26 with RDD
+* write custom iterative graph algos with PregelAPI
 
 Pregel-like bulk-synchronous message-passing API. Allows for a substantially more *efficient distributed execution* 
 while also exposing greater flexibility for *graph-based computation*
@@ -128,60 +127,58 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 -------------------------------------------------
--> # Ingesting data <-
+## Ingesting data 
 
 * options
- - read _static_ data *off disk* (object storage / S3)
-  - read.textFile ( JSON, text, csv )
-  - `slow`
-  - Dataset
- - consume _streaming_ data in *motion*
-  - Structured Streaming
-  - `higher velocity`
-  - RDD 
+ * read _static_ data *off disk* (object storage / S3)
+  * read.textFile ( JSON, text, csv )
+  * `slow`
+  * Dataset
+ * consume _streaming_ data in *motion*
+  * Structured Streaming
+  * `higher velocity`
+  * RDD 
 
 -------------------------------------------------
--> # Spark Clustering <-
+## Spark Clustering 
 
 * Components
-    - Spark Applications
-        - * Independent set of processes *
-        - * Spark Context *
-    - Cluster Managers
-        - * Standalone* (default)
-        - Mesos - Hadoop MapReduce 
-        - YARN - resource manager 
+     * Spark Applications
+         * Independent set of processes *
+         * Spark Context *
+     * Cluster Managers
+         * Standalone* (default)
+         * Mesos  Hadoop MapReduce 
+         * YARN - resource manager 
         
 
 -------------------------------------------------
--> # Applications <-
+## Applications 
 
     * Running options:
-        - Launch Applications
-            - * bin/spark-submit *
-            - * supports all cluster managers *
+        * Launch Applications
+            * * bin/spark-submit *
+            * * supports all cluster managers *
 
-        - Dependencies
-            - * Assembly Jar *
             
 
 
 -------------------------------------------------
--> # Monitoring with Web interfaces <-
+## Monitoring with Web interfaces 
 
  
 * Monitor
-- Application information
--- Tasks
--- Memory usage
--- Running Executors
--- Environmental Variables
-- REST API 
--- Port 4040 (default)
+ * Application information
+  * Tasks
+  * Memory usage
+  * Running Executors
+  * Environmental Variables
+* REST API 
+ *Port 4040 (default)
 
 
 -------------------------------------------------
--> # Dev process  <-
+## Dev process  
 
 Build ambitious applications quickly!
 
@@ -196,10 +193,10 @@ Significant improvement over  batch Hive jobs running on Hadoop.
 
 A developer can train a ML model can put the model through multiple steps in the training process without checkpointing to disk.
  
--> then port key algorithms by `writing actual code` to *deploy and run* in a spark cluster
+then port key algorithms by `writing actual code` to *deploy and run* in a spark cluster
 
 -------------------------------------------------
--> # explore data in the spark shell scala REPL   <-
+## explore data in the spark shell scala REPL   
 
 First launch the Scala shell:
 `bin/spark-shell`
@@ -208,7 +205,7 @@ and then go ahead and start using scala>
 
 
 -------------------------------------------------
--> # DEMO Weather data from breaking news alerts - raw data <-
+## DEMO Weather data from breaking news alerts - raw data 
 
 Source - methodology
 Email alerts sent to POSTFIX - written to neo4j Graph DB - Flask Python rest call
@@ -225,7 +222,7 @@ e.g.
  Save as JSON file
 
 -------------------------------------------------
--> # DEMO Thunderstorms from news alerts - bin/spark-shell <-
+## DEMO Thunderstorms from news alerts - bin/spark-shell 
 
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
@@ -239,12 +236,7 @@ val thunder = spark.sql("SELECT subject FROM vWeatherLDM WHERE subject LIKE '%Ts
 val r = thunder.collect()
 //inspect first row
 var firstValue = r(0)
-```
 
--------------------------------------------------
--> # DEMO Weather data from breaking news alerts - explore 2 <-
-
-```
 //create stack to collect states
 import scala.collection.mutable.Stack
 var stackStates = Stack[String]()
@@ -252,10 +244,8 @@ var stackStates = Stack[String]()
 //parse out States where thunderstorms occured
 var ll = rowString.split(' ')
 //for comprehension
-for (p <- ll if p.length() == 2) stackStates.push(p)
+for (p  ll if p.length() == 2) stackStates.push(p)
 
--------------------------------------------------
--> # Demo Weather data from breaking news alerts - confirm logic <-
 
 //add some extra state data to test count groupBy
 stackStates.push("NY")
@@ -264,12 +254,12 @@ stackStates.push("NY")
 
 //re-create and confirm display frequency distribution
 var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
-for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
+for ((k,v)  mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
 ```
 
 
 -------------------------------------------------
--> # Thunderstorms by state <-
+## Thunderstorms by state 
 
 
 
@@ -294,7 +284,7 @@ c) Deploy to and take advantage of *big datasets*  to take full advantage of _Sp
 
 
 -------------------------------------------------
--> # DEMO Scala read csv file <-
+## DEMO Scala read csv file 
 ```
 package example
 
@@ -319,7 +309,7 @@ object Hello {
 
 
 -------------------------------------------------
--> # DEMO Scala read csv file - compile and deploy to Spark <-
+## DEMO Scala read csv file - compile and deploy to Spark 
 
 ```
 /*
@@ -343,7 +333,7 @@ Simplify: use a *config file* in cases where there are multiple Dependencies/Jar
 
 
 -------------------------------------------------
--> # DEMO Scala read csv file - expected output  <-
+## DEMO Scala read csv file - expected output  
 
 
 ```
@@ -357,7 +347,7 @@ Simplify: use a *config file* in cases where there are multiple Dependencies/Jar
 ```
 
 -------------------------------------------------
--> # Resources <-
+## Resources 
 
 spark sql tutorial
 https://www.edureka.co/blog/spark-sql-tutorial/
@@ -370,14 +360,27 @@ https://spark.apache.org/docs/1.6.0/api/java/org/apache/spark/graphx/Pregel.html
 
 
 -------------------------------------------------
--> # Q&A <-
+## Q&A 
 
 Sign up for a free  [IBM Cloud Account](https://ibm.biz/BdzgmP)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------------------------------------------------
--> # installing Apache Spark <-
+## installing Apache Spark 
 
 _platforms_
     ubuntu
@@ -395,12 +398,3 @@ download spark 2.4.4 (stable latest)
 https://www-us.apache.org/dist/spark/spark-2.4.4/spark-2.4.4.tgz
 
 
--------------------------------------------------
--> # word count spark-shell <-
-```
-val inputFilePath = "file:///home/developer/datasets/moby-dick.txt"
-val text_file = sc.textFile(inputFilePath)
-val counts = text_file.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
-val n = counts.collect
-n
-```
