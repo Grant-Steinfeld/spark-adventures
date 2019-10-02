@@ -56,6 +56,7 @@ options like Hadoop.
 
 
 
+
 -------------------------------------------------
 ## What makes it so fast? 
 
@@ -94,15 +95,14 @@ Distributed Nodes/Parallel execution
 ## Spark Core 
 
 * Core
-      * Scala
-      * Dist task dispatching
-      * Scheduling
-      * i/o functionality
-      * Java; Python; Scala; R
-
-      *Shared variables
-            * Broadcast Vars
-            * Accumulators
+    * Scala
+    * Dist task dispatching
+    * Scheduling
+    * i/o functionality
+    * Java; Python; Scala; R
+    * Shared variables
+     * Broadcast 
+     * Accumulator 
 
 
 
@@ -112,15 +112,15 @@ Distributed Nodes/Parallel execution
 ## Spark Productivity 
 
 * Ecosystem
- * Spark Streaming API - RDD / Dataset
-  * SparkSQL - Dataframes (~pandas)
-   * optimizations, abstractions
-   * SQL syntax or functional flow
- * GraphX
- * MLlib
-  * Machine Learning
-  * Dist ML fwk / 9x faster hadoop
- * Structured Streaming API  
+    * Spark Streaming API - RDD / Dataset
+    * SparkSQL - Dataframes (~pandas)
+    * optimizations, abstractions
+    * SQL syntax or functional flow
+    * GraphX
+    * MLlib
+    * Machine Learning
+    * Dist ML fwk / 9x faster hadoop
+    * Structured Streaming API  
 
 
 
@@ -129,13 +129,12 @@ Distributed Nodes/Parallel execution
 ## GraphX 
 
 * Unifies
- * ETL
- * exploratory analysis
- * iterative graph computation
- * data view
-  * graph && collection
-  * transform and join graphs (vertices and edges)497.26 with RDD
-* write custom iterative graph algos with PregelAPI
+    * ETL
+    * exploratory analysis
+    * iterative graph computation
+    * graph && collection
+      * transform and join graphs (vertices and edges)497.26 with RDD
+      * write custom iterative graph algos with PregelAPI
 
 Pregel-like bulk-synchronous message-passing API. 
 
@@ -153,14 +152,14 @@ while also exposing greater flexibility for *graph-based computation*
 ## Ingesting data 
 
 * options
- * read _static_ data *off disk* (object storage / S3)
-  * read.textFile ( JSON, text, csv )
-  * `slow`
-  * Dataset
- * consume _streaming_ data in *motion*
-  * Structured Streaming
-  * `higher velocity`
-  * RDD 
+    * read _static_ data *off disk* (object storage / S3)
+     * read.textFile ( JSON, text, csv )
+     *  `slow`
+     * Dataset
+   * consume _streaming_ data in *motion*
+    * Structured Streaming
+    * `higher velocity`
+
 
 
 
