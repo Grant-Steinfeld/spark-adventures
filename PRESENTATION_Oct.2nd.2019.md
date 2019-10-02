@@ -34,34 +34,41 @@ that resides in memory allowing for *fast iterative processing*
 -------------------------------------------------
 -> # Goals <-
 
-Origin:  out UC Berkely invented by `Matei Zaharia` 
+2009 out UC Berkely created by `Matei Zaharia` -> Databricks
 who was frustrated with the slow disk intensive MapReduce 
 options like Hadoop.
 
 
 * Set out to achieve 2 main goals to provide
     - *composable* high level set of API's for _distributed processing_
-    - *unified engine* for running complete apps
+    - natural way v.s. Hadoop hacks to disk
+    - *unified engine* - ecosystem of `tools` for running complete apps
 
 
 -------------------------------------------------
 -> # What makes it so fast? <-
 
+Sub-second latency
+
 In-Memory datasets, that do not require i/o ( c.f. Hadoop)
 
-Parallel execution
+Lineage graph (cache)
 
-*_Fault tolerant_*
-Checkpoints, so if job fails it can pick up where it left off
+Lazy Evaluation
+
+Distributed Nodes/Parallel execution
+
 
 -------------------------------------------------
--> # Resilient Distributed Datasets (RDD) <-
+-> # Core Abstraction - Resilient Distributed Datasets (RDD) <-
 
 
 * RDD
  - immutable
- -- MapReduce
+  -- MapReduce
  - Read-Only multi-set
+ - *_Fault tolerant_*
+  -- Checkpoints
 
 
 
@@ -71,6 +78,7 @@ Checkpoints, so if job fails it can pick up where it left off
 -> # Spark Core <-
 
 * Core
+- Scala
 - Dist task dispatching
 -- Scheduling
 - i/o functionality
@@ -82,43 +90,36 @@ Checkpoints, so if job fails it can pick up where it left off
 
 
 -------------------------------------------------
--> # Data Lakes v.s Streaming Data in motion <-
+-> # Spark Productivity <-
 
-* Version 1.x
-- Spark Streaming API 
-- DSL
--- Scala
--- Java
--- Python
+* Ecosystem
+ - Spark Streaming API - RDD / Dataset
+ - SparkSQL - Dataframes (~pandas)
+  -- optimizations, abstractions
+  -- SQL syntax or functional flow
+ - GraphX
+ - MLlib
+  -- Machine Learning
+  -- Dist ML fwk / 9x faster hadoop
+ - Structured Streaming API  
 
-* Version 2.x
-- Structured Streaming API
 
 
-
--------------------------------------------------
--> # Productivity? <-
-
-*  Achieved by a few High Level Query APIs
-- SparkSQL 
--- SQL syntax queries
--- return Data Frames
-
-- MLlib
--- Machine Learning
--- Dist ML fwk / 9x faster hadoop
-- GraphX
 
 -------------------------------------------------
--> # GraphX Computation <-
+-> # GraphX <-
 
-Pregel-like bulk-synchronous message-passing API. 
+* Unifies
+ - ETL
+ - exploratory analysis
+ - iterative graph computation
+ - data view
+  -- graph && collection
+  -- transform and join graphs (vertices and edges)497.26 with RDD
+- write custom iterative graph algos with PregelAPI
 
-`org.apache.spark.graphx.Pregel`
-
-GraphX Pregel API 
-
-allows for a substantially more *efficient distributed execution* while also exposing greater flexibility for *graph-based computation*
+Pregel-like bulk-synchronous message-passing API. Allows for a substantially more *efficient distributed execution* 
+while also exposing greater flexibility for *graph-based computation*
 
 
 
@@ -136,9 +137,6 @@ allows for a substantially more *efficient distributed execution* while also exp
   - Structured Streaming
   - `higher velocity`
   - RDD 
-
-
-
 
 -------------------------------------------------
 -> # Spark Clustering <-
@@ -231,7 +229,7 @@ e.g.
 
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
-
+//org.apache.spark.sql.DataFrame
 //prep for SQL queries
 weather.createOrReplaceTempView("vWeatherLDM")
 
@@ -239,12 +237,11 @@ weather.createOrReplaceTempView("vWeatherLDM")
 val thunder = spark.sql("SELECT subject FROM vWeatherLDM WHERE subject LIKE '%Tstm%'")
 
 //Convert to Array
-val r = thunder.limit(60).collect()
+val r = thunder.collect()
 
 //inspect first row
 var firstValue = r(0)
-var a = firstValue.mkString
-var rowString = a.substring(a.indexOf("Tstm")+4).toUpperCase
+
 ```
 
 -------------------------------------------------
@@ -260,9 +257,7 @@ var ll = rowString.split(' ')
 //for comprehension
 for (p <- ll if p.length() == 2) stackStates.push(p)
 
-//create and display frequency distribution
-var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
-for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
+
 
 -------------------------------------------------
 -> # Demo Weather data from breaking news alerts - confirm logic <-
@@ -303,10 +298,6 @@ b) To run periodically on unstructured data to perform a)
 c) Deploy to and take advantage of *big datasets*  to take full advantage of _Spark clustering_
 
 
--------------------------------------------------
--> # DEMO Scala thunderstorm.scala <-
-
- tbd
 
 
 -------------------------------------------------
@@ -324,25 +315,24 @@ object Hello {
          println("hello spark")
          val spark = SparkSession.builder().getOrCreate()
          val medals = spark.read.option("header",true).csv("file:///home/developer/datasets/most-medals-won.csv")
-         println(medals)
+         
          medals.printSchema()
+         medals.show()
          spark.stop()
         }
 }
-
 ```
+
 
 
 -------------------------------------------------
--> # DEMO: Running and deploying a Scala application <-
-
-
+-> # DEMO Scala read csv file - compile and deploy to Spark <-
 
 ```
 /*
-    first compile with mvn
+    first compile with sbt
 */
-mvn package
+sbt clean package
 
 /*
     produces a jar file
@@ -352,15 +342,26 @@ mvn package
 /*
     deploy and run jar in the scala unified engine
 */
-/opt/spark-2.4.4/bin/spark-submit 
-    --class example.Hello 
-    --master local[*] 
-    /home/developer/dev/scala-hw/target/scala-2.12/hello-spark_2.12-0.1.0-SNAPSHOT.jar
+/opt/spark-2.4.4/bin/spark-submit --class example.Hello --master local[*] /home/developer/dev/scala-hw/target/scala-2.12/hello-spark_2.12-0.1.0-SNAPSHOT.jar
+
 ```
 
 Simplify: use a *config file* in cases where there are multiple Dependencies/Jars
 
 
+-------------------------------------------------
+-> # DEMO Scala read csv file - expected output  <-
+
+
+```
++-------+--------+---------+------------------+--------------+
+|Athlete| Country|    Sport| Olympics Attended| Total  Medals|
++-------+--------+---------+------------------+--------------+
+|     Mo|     USA|   Rowing|              Vail|            9 |
+|     Ao|    USSR| Swimming|             Minsk|            1 |
+|    Flo|     USA|  Running|         Barcelona|            2 |
++-------+--------+---------+------------------+--------------+
+```
 
 -------------------------------------------------
 -> # Resources <-
@@ -377,6 +378,10 @@ https://spark.apache.org/docs/1.6.0/api/java/org/apache/spark/graphx/Pregel.html
 
 -------------------------------------------------
 -> # The End <-
+
+Sign up for a free  IBM Cloud Account
+
+https://ibm.biz/BdzgmP
 
 
 -------------------------------------------------
@@ -400,5 +405,25 @@ https://www-us.apache.org/dist/spark/spark-2.4.4/spark-2.4.4.tgz
 
 
 
+-------------------------------------------------
+-> # DEMO Scala thunderstorm.scala <-
 
+```
+/*
+    first compile with sbt
+*/
+sbt clean package
+
+/*
+    produces a jar file
+*/
+
+stat /home/developer/dev/scala-weather/target/scala-2.12/weather-rollup_2.12-0.2.0-SNAPSHOT.jar
+
+/*
+    deploy and run jar in the scala unified engine
+*/
+/opt/spark-2.4.4/bin/spark-submit --class weather.Weather --master local[*] /home/developer/dev/scala-weather/target/scala-2.12/weather-rollup_2.12-0.2.0-SNAPSHOT.jar
+
+```
 
