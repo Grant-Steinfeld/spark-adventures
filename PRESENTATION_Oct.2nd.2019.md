@@ -377,11 +377,10 @@ https://spark.apache.org/docs/1.6.0/api/java/org/apache/spark/graphx/Pregel.html
 
 
 -------------------------------------------------
--> # The End <-
+-> # Q&A <-
 
-Sign up for a free  IBM Cloud Account
+Sign up for a free  [IBM Cloud Account](https://ibm.biz/BdzgmP)
 
-https://ibm.biz/BdzgmP
 
 
 -------------------------------------------------
