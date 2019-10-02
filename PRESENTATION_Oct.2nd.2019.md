@@ -40,9 +40,9 @@ options like Hadoop.
 
 
 * Set out to achieve 2 main goals to provide
-    - *composable* high level set of API's for _distributed processing_
-    - natural way v.s. Hadoop hacks to disk
-    - *unified engine* - ecosystem of `tools` for running complete apps
+    * *composable* high level set of API's for _distributed processing_
+    * natural way v.s. Hadoop hacks to disk
+    * *unified engine* - ecosystem of `tools` for running complete apps
 
 
 -------------------------------------------------
@@ -64,11 +64,13 @@ Distributed Nodes/Parallel execution
 
 
 * RDD
- - immutable
-  -- MapReduce
- - Read-Only multi-set
- - *_Fault tolerant_*
-  -- Checkpoints
+ * RAM
+   * easy to compose/pipeline
+ * immutable
+   * MapReduce
+ * Read-Only multi-set
+ * *_Fault tolerant_*
+   * Checkpoints
 
 
 
@@ -192,11 +194,9 @@ Now you can interactively explore and analyze huge datasets.
 
 Significant improvement over  batch Hive jobs running on Hadoop.
 
-A developer can train a ML model can put the model through multiple steps in the training process
-without checkpointing to disk.
-
+A developer can train a ML model can put the model through multiple steps in the training process without checkpointing to disk.
+ 
 -> then port key algorithms by `writing actual code` to *deploy and run* in a spark cluster
-
 
 -------------------------------------------------
 -> # explore data in the spark shell scala REPL   <-
@@ -225,12 +225,11 @@ e.g.
  Save as JSON file
 
 -------------------------------------------------
--> # DEMO Weather data from breaking news alerts - explore <-
+-> # DEMO Thunderstorms from news alerts - bin/spark-shell <-
 
 ```
 val weather  = spark.read.json("file:///home/developer/datasets/weather.json")
-//org.apache.spark.sql.DataFrame
-//prep for SQL queries
+
 weather.createOrReplaceTempView("vWeatherLDM")
 
 //Create new dataset with subjects that have the word Tstem (Thunderstorm) 
@@ -238,10 +237,8 @@ val thunder = spark.sql("SELECT subject FROM vWeatherLDM WHERE subject LIKE '%Ts
 
 //Convert to Array
 val r = thunder.collect()
-
 //inspect first row
 var firstValue = r(0)
-
 ```
 
 -------------------------------------------------
@@ -257,8 +254,6 @@ var ll = rowString.split(' ')
 //for comprehension
 for (p <- ll if p.length() == 2) stackStates.push(p)
 
-
-
 -------------------------------------------------
 -> # Demo Weather data from breaking news alerts - confirm logic <-
 
@@ -270,8 +265,6 @@ stackStates.push("NY")
 //re-create and confirm display frequency distribution
 var mapStatesWithThunderStorms = stackStates.groupBy(identity).mapValues(_.size)
 for ((k,v) <- mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s occured \n", k, v)
-
-
 ```
 
 
@@ -402,27 +395,12 @@ download spark 2.4.4 (stable latest)
 https://www-us.apache.org/dist/spark/spark-2.4.4/spark-2.4.4.tgz
 
 
-
-
 -------------------------------------------------
--> # DEMO Scala thunderstorm.scala <-
-
+-> # word count spark-shell <-
 ```
-/*
-    first compile with sbt
-*/
-sbt clean package
-
-/*
-    produces a jar file
-*/
-
-stat /home/developer/dev/scala-weather/target/scala-2.12/weather-rollup_2.12-0.2.0-SNAPSHOT.jar
-
-/*
-    deploy and run jar in the scala unified engine
-*/
-/opt/spark-2.4.4/bin/spark-submit --class weather.Weather --master local[*] /home/developer/dev/scala-weather/target/scala-2.12/weather-rollup_2.12-0.2.0-SNAPSHOT.jar
-
+val inputFilePath = "file:///home/developer/datasets/moby-dick.txt"
+val text_file = sc.textFile(inputFilePath)
+val counts = text_file.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
+val n = counts.collect
+n
 ```
-
