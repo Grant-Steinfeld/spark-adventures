@@ -101,8 +101,8 @@ Distributed Nodes/Parallel execution
     * i/o functionality
     * Java; Python; Scala; R
     * Shared variables
-     * Broadcast 
-     * Accumulator 
+      * Broadcast 
+      * Accumulator 
 
 
 
