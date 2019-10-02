@@ -8,6 +8,7 @@
 
 ### Presenters: 
 Grant Steinfeld - Developer Advocate JVM/Blockchain IBM @gsteinfeld
+
 Pratik Patel - Lead Developer Advocate IBM @prpatel
 
 2018-10-02
@@ -136,7 +137,10 @@ Distributed Nodes/Parallel execution
   * transform and join graphs (vertices and edges)497.26 with RDD
 * write custom iterative graph algos with PregelAPI
 
-Pregel-like bulk-synchronous message-passing API. Allows for a substantially more *efficient distributed execution* 
+Pregel-like bulk-synchronous message-passing API. 
+
+Allows for a substantially more *efficient distributed execution* 
+
 while also exposing greater flexibility for *graph-based computation*
 
 
@@ -251,7 +255,9 @@ and then go ahead and start using scala>
 ## DEMO Weather data from breaking news alerts - raw data 
 
 Source - methodology
-Email alerts sent to POSTFIX - written to neo4j Graph DB - Flask Python rest call
+Email alerts sent to POSTFIX - written to neo4j Graph DB - 
+
+Flask Python rest call
 
  http://agentidea.com/api/news/src/weather
 
