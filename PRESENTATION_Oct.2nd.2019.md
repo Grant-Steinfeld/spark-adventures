@@ -6,8 +6,13 @@
 
 ## Apache Foundation Open Source Analytics Cluster-computing  framework 
 
-### Presenters: Grant Steinfeld and Pratik Patel
+### Presenters: 
+Grant Steinfeld - Developer Advocate JVM/Blockchain IBM @gsteinfeld
+Pratik Patel - Lead Developer Advocate IBM @prpatel
+
 2018-10-02
+
+
 
 -------------------------------------------------
 
@@ -30,6 +35,9 @@ that resides in memory allowing for *fast iterative processing*
 
 
 
+
+
+
 -------------------------------------------------
 ## Goals 
 
@@ -44,6 +52,9 @@ options like Hadoop.
     * *unified engine* - ecosystem of `tools` for running complete apps
 
 
+
+
+
 -------------------------------------------------
 ## What makes it so fast? 
 
@@ -56,6 +67,9 @@ Lineage graph (cache)
 Lazy Evaluation
 
 Distributed Nodes/Parallel execution
+
+
+
 
 
 -------------------------------------------------
@@ -88,6 +102,9 @@ Distributed Nodes/Parallel execution
  *Shared variables
   * Broadcast Vars
   * Accumulators
+
+
+
 
 
 -------------------------------------------------
@@ -126,6 +143,8 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 
+
+
 -------------------------------------------------
 ## Ingesting data 
 
@@ -138,6 +157,9 @@ while also exposing greater flexibility for *graph-based computation*
   * Structured Streaming
   * `higher velocity`
   * RDD 
+
+
+
 
 -------------------------------------------------
 ## Spark Clustering 
@@ -152,6 +174,9 @@ while also exposing greater flexibility for *graph-based computation*
          * YARN - resource manager 
         
 
+
+
+
 -------------------------------------------------
 ## Applications 
 
@@ -161,6 +186,10 @@ while also exposing greater flexibility for *graph-based computation*
             * * supports all cluster managers *
 
             
+
+
+
+
 
 
 -------------------------------------------------
@@ -175,6 +204,10 @@ while also exposing greater flexibility for *graph-based computation*
   * Environmental Variables
 * REST API 
  *Port 4040 (default)
+
+
+
+
 
 
 -------------------------------------------------
@@ -195,6 +228,11 @@ A developer can train a ML model can put the model through multiple steps in the
  
 then port key algorithms by `writing actual code` to *deploy and run* in a spark cluster
 
+
+
+
+
+
 -------------------------------------------------
 ## explore data in the spark shell scala REPL   
 
@@ -202,6 +240,11 @@ First launch the Scala shell:
 `bin/spark-shell`
 
 and then go ahead and start using scala> 
+
+
+
+
+
 
 
 -------------------------------------------------
@@ -220,6 +263,11 @@ e.g.
 
 
  Save as JSON file
+
+
+
+
+
 
 -------------------------------------------------
 ## DEMO Thunderstorms from news alerts - bin/spark-shell 
@@ -241,7 +289,7 @@ var firstValue = r(0)
 import scala.collection.mutable.Stack
 var stackStates = Stack[String]()
 
-//parse out States where thunderstorms occured
+//parse out States where thunderstorms occur 
 var ll = rowString.split(' ')
 //for comprehension
 for (p  ll if p.length() == 2) stackStates.push(p)
@@ -346,6 +394,10 @@ Simplify: use a *config file* in cases where there are multiple Dependencies/Jar
 +-------+--------+---------+------------------+--------------+
 ```
 
+
+
+
+
 -------------------------------------------------
 ## Resources 
 
@@ -363,6 +415,11 @@ https://spark.apache.org/docs/1.6.0/api/java/org/apache/spark/graphx/Pregel.html
 ## Q&A 
 
 Sign up for a free  [IBM Cloud Account](https://ibm.biz/BdzgmP)
+# https://ibm.biz/BdzgmP
+
+The repo with this code:
+https://github.com/Grant-Steinfeld/spark-adventures
+
 
 
 
