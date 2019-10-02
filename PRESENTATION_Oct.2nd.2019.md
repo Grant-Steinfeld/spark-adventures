@@ -99,7 +99,11 @@ Distributed Nodes/Parallel execution
     * Dist task dispatching
     * Scheduling
     * i/o functionality
-    * Java; Python; Scala; R
+    * languages
+      * Java
+      * Python
+      * Scala
+      * R
     * Shared variables
       * Broadcast 
       * Accumulator 
@@ -112,15 +116,19 @@ Distributed Nodes/Parallel execution
 ## Spark Productivity 
 
 * Ecosystem
-    * Spark Streaming API - RDD / Dataset
-    * SparkSQL - Dataframes (~pandas)
-    * optimizations, abstractions
-    * SQL syntax or functional flow
+    * Spark Streaming API
+      * data in motion
+      * DStreamAP -> RDD 
+    * Structured Streaming API  
+      * built on SparkSQL 
+      * based on Dataframes (~pandas)
+      * optimizations, abstractions
+      * SQL syntax or functional flow
     * GraphX
     * MLlib
-    * Machine Learning
-    * Dist ML fwk / 9x faster hadoop
-    * Structured Streaming API  
+      * Machine Learning
+      * Dist ML fwk / 9x faster hadoop
+    
 
 
 
@@ -133,7 +141,7 @@ Distributed Nodes/Parallel execution
     * exploratory analysis
     * iterative graph computation
     * graph && collection
-      * transform and join graphs (vertices and edges)497.26 with RDD
+      * transform and join graphs (vertices and edges)
       * write custom iterative graph algos with PregelAPI
 
 Pregel-like bulk-synchronous message-passing API. 
@@ -153,12 +161,12 @@ while also exposing greater flexibility for *graph-based computation*
 
 * options
     * read _static_ data *off disk* (object storage / S3)
-     * read.textFile ( JSON, text, csv )
-     *  `slow`
-     * Dataset
+      * read.textFile ( JSON, text, csv )
+      *  `slow`
+      * Dataset
    * consume _streaming_ data in *motion*
-    * Structured Streaming
-    * `higher velocity`
+      * Structured Streaming
+      * `higher velocity`
 
 
 
