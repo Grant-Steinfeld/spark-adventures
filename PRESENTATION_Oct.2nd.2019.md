@@ -11,7 +11,7 @@ Grant Steinfeld - Developer Advocate JVM/Blockchain IBM @gsteinfeld
 
 Pratik Patel - Lead Developer Advocate IBM @prpatel
 
-2018-10-02
+2019-10-02
 
 
 
@@ -94,15 +94,15 @@ Distributed Nodes/Parallel execution
 ## Spark Core 
 
 * Core
- * Scala
- * Dist task dispatching
-  * Scheduling
- * i/o functionality
-  * Java; Python; Scala; R
+      * Scala
+      * Dist task dispatching
+      * Scheduling
+      * i/o functionality
+      * Java; Python; Scala; R
 
- *Shared variables
-  * Broadcast Vars
-  * Accumulators
+      *Shared variables
+            * Broadcast Vars
+            * Accumulators
 
 
 
