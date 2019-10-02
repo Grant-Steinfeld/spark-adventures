@@ -21,6 +21,14 @@ Pratik Patel - Lead Developer Advocate IBM @prpatel
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 
 ## Overview 
@@ -51,6 +59,14 @@ that resides in memory allowing for *fast iterative processing*
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Goals 
 
@@ -75,6 +91,14 @@ options like Hadoop.
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## What makes it so fast? 
 
@@ -98,6 +122,14 @@ Distributed Nodes/Parallel execution
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Core Abstraction - Resilient Distributed Datasets (RDD) 
 
@@ -120,6 +152,14 @@ Distributed Nodes/Parallel execution
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 
 ## Spark Core 
@@ -148,6 +188,14 @@ Distributed Nodes/Parallel execution
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Spark Productivity 
 
@@ -175,6 +223,14 @@ Distributed Nodes/Parallel execution
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## GraphX 
 
@@ -204,6 +260,14 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Ingesting data 
 
@@ -226,6 +290,14 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Spark Clustering 
 
@@ -248,6 +320,14 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Applications 
 
@@ -269,6 +349,14 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Monitoring with Web interfaces 
 
@@ -293,6 +381,14 @@ while also exposing greater flexibility for *graph-based computation*
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Dev process  
 
@@ -322,6 +418,14 @@ then port key algorithms by `writing actual code` to *deploy and run* in a spark
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## explore data in the spark shell scala REPL   
 
@@ -342,6 +446,14 @@ and then go ahead and start using scala>
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## DEMO Weather data from breaking news alerts - raw data 
 
@@ -372,6 +484,14 @@ e.g.
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## DEMO Thunderstorms from news alerts - bin/spark-shell 
 
@@ -415,6 +535,14 @@ for ((k,v)  mapStatesWithThunderStorms) printf("In State: %s, Thunderstorms: %s 
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Thunderstorms by state 
 
@@ -446,6 +574,14 @@ c) Deploy to and take advantage of *big datasets*  to take full advantage of _Sp
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## DEMO Scala read csv file 
 ```
@@ -477,6 +613,14 @@ object Hello {
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## DEMO Scala read csv file - compile and deploy to Spark 
 
@@ -507,6 +651,14 @@ Simplify: use a *config file* in cases where there are multiple Dependencies/Jar
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## DEMO Scala read csv file - expected output  
 
@@ -531,6 +683,14 @@ Simplify: use a *config file* in cases where there are multiple Dependencies/Jar
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Resources 
 
@@ -550,6 +710,14 @@ https://spark.apache.org/docs/1.6.0/api/java/org/apache/spark/graphx/Pregel.html
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## Q&A 
 
@@ -581,6 +749,14 @@ https://github.com/Grant-Steinfeld/spark-adventures
 
 
 ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 ```
 ## installing Apache Spark 
 
