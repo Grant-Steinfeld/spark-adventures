@@ -468,10 +468,16 @@ Flask Python rest call
 
  http://agentidea.com/api/news/src/weather
 
-2124 news events to date
-e.g.
- 
-    [{"date": "Tue Aug 20 11:16:48 2019", "src": "weather", "from": "ldm@weather.cod.edu", "day_of_year": 232, "subject": "PRELIM: Ww 602 Severe Tstm Ia Il Mo 201115z - 202000z"}, ...]
+it should bring down many breaking news weather alerts to date, for example
+ ```JSON
+    [  {
+    "date": "Mon Aug 19 05:59:50 2019",
+    "src": "weather",
+    "from": "ldm@weather.cod.edu",
+    "day_of_year": 231,
+    "subject": "DAY2SVR: Nws Storm Prediction Center Norman Ok"
+  }]
+  ```
 
 
 
