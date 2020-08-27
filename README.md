@@ -1,15 +1,16 @@
 
-# Meetup at Blockchain on Apache Zeppelin and Spark 2.4.4 
+# IBM Developer Meetup Data Analysis using Apache Zeppelin
 
 
 
 
 ### Presenters: 
-Grant Steinfeld - Developer Advocate JVM/Blockchain IBM @gsteinfeld
+Grant Steinfeld - IBM Developer Advocate JVM/Blockchain  @gsteinfeld
 
-Pratik Patel - Lead Developer Advocate IBM @prpatel
+Pratik Patel - IBM Lead Developer Advocate 
+ @prpatel
 
-2019-10-02
+2019-10-02 - Blockchain Center, NYC
 
 
 ![thunderstorms by state](ThunderstormOccurance.jpg)
