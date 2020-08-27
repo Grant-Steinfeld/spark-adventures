@@ -1,10 +1,8 @@
 
-
-# Apache Spark 2.4.4 
-
+# Meetup at Blockchain on Apache Zeppelin and Spark 2.4.4 
 
 
-## Apache Foundation Open Source Analytics Cluster-computing  framework 
+
 
 ### Presenters: 
 Grant Steinfeld - Developer Advocate JVM/Blockchain IBM @gsteinfeld
@@ -15,6 +13,10 @@ Pratik Patel - Lead Developer Advocate IBM @prpatel
 
 
 ![thunderstorms by state](ThunderstormOccurance.jpg)
+What you will learn:
+
+*  Leverage [Apache Zepellin](https://zeppelin.apache.org/) Notebook ecosystem
+*  Overview how to do simple data analysis using Apache Spark with Scala and Python
 
 ```
 
