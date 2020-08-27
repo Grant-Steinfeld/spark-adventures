@@ -15,11 +15,12 @@ Pratik Patel - Lead Developer Advocate IBM @prpatel
 
 
 
+
+
+![thunderstorms by state](ThunderstormOccurance.jpg)
+
+
 ```
-
-
-
-
 ------------------------------------------------------------------------------------------------------
 
 
